@@ -63,6 +63,9 @@ app.use(
 // <!-- Section 4 : API Routes -->
 // *****************************************************
 // TODO - Include your API routes here
+app.get('/welcome', (req, res) => {
+  res.json({status: 'success', message: 'Welcome!'});
+});
 app.get('/', (req, res) => {
     res.redirect('/login'); //this will call the /anotherRoute route in the API
   });
@@ -101,49 +104,97 @@ app.get("/login", (req, res) => {
     res.render("pages/login");
 });
  
-app.post('/login', async (req, res) => {
-    try{
-        //do something
-        // check if password from request matches with password in DB
-        const user = `select password from users where username = $1;`;
-        const password = await db.any(user, [req.body.username])
+// app.post('/login', async (req, res) => {
+//     try{
+//         //do something
+//         // check if password from request matches with password in DB
+//         const user = `select password from users where username = $1;`;
+//         const password = await db.any(user, [req.body.username])
 
 
-        if(password.length === 0)
-        {
-            throw new Error('User not found')
-        }
-        const match = await bcrypt.compare(req.body.password, password[0].password);
-        if(match.err) 
-        {
-            console.log('Incorrect username or password');
-            res.redirect("/login");
-        }
-        else 
-        { 
-            req.session.user = user;
-            req.session.save();
+//         if(password.length === 0)
+//         {
+//             throw new Error('User not found')
+//         }
+//         const match = await bcrypt.compare(req.body.password, password[0].password);
+//         if(match.err) 
+//         {
+//             console.log('Incorrect username or password');
+//             res.redirect("/login");
+//         }
+//         else 
+//         { 
+//             req.session.user = user;
+//             req.session.save();
 
-            res.redirect("/home");
-        }
-    }
-    catch(err){
-        console.log(err);
-        res.render("pages/register", {message: err});
-    }
+//             res.redirect("/home");
+//         }
+//     }
+//     catch(err){
+//         console.log(err);
+//         res.render("pages/register", {message: err});
+//     }
+// });
+app.get('/login', (req, res) => {
+  res.render('pages/login');
 });
 
-// Authentication Middleware.
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+
+  // To-Do: Fetch the user from the 'users' table using the username
+  const user = await db.oneOrNone('SELECT * FROM users WHERE username = $1', [username]);
+
+  if (user) {
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (isPasswordValid) {
+      req.session.user = user;
+      req.session.save();
+      res.redirect('/home'); 
+    } else {
+      // res.redirect('/login');
+      res.render("pages/login", {
+        message: `Incorrect Password or Username`
+      });
+    }
+  } else {
+    // User not found
+    res.redirect('/register');
+  }
+});
+
+
 // const auth = (req, res, next) => {
-//     if (!req.session.user) {
-//       // Default to login page.
-//       return res.redirect('/login');
-//     }
-//     next();
-//   };
+//   if (!req.session.user) {
+//     return res.redirect("/login");
+//   }
+//   next();
+// };
+
+// app.use(auth);
+
+
+// Authentication Middleware.
+const auth = (req, res, next) => {
+    if (!req.session.user) {
+      // Default to login page.
+      return res.redirect('/login');
+    }
+    next();
+  };
   
   // Authentication Required
-//app.use(auth);
+app.use(auth);
+
+app.get("/home", (req, res) => {
+  res.render("pages/home");
+});
+
+app.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.render("pages/login");
+});
 
 
 
@@ -151,5 +202,5 @@ app.post('/login', async (req, res) => {
 // <!-- Section 5 : Start Server-->
 // *****************************************************
 // starting the server and keeping the connection open to listen for more requests
-app.listen(3000);
+module.exports = app.listen(3000);
 console.log('Server is listening on port 3000');
