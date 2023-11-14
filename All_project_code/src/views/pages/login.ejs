@@ -1,7 +1,22 @@
+<%- include('../partials/header.ejs') %>
 
-
-
-
-
-
-<%- include ('../partials/footer') %>
+<main>
+    <div id = "outer-containter" style = "display: flex; align-items: center; justify-content: center; height : 90vh;">
+        <!-- box with the login text and everything -->
+        <div class = "login_container" style = "background-color: #f4f4f4; padding : 50px; border-radius: 8px; border-color:  #d4af37 ; border-width:2px; border-style:solid;">
+            <h1 style = "color : #394240; text-align: left;">Login</h1>
+            <form action="/login" method="POST" style = "text-align: left;">
+                <label style = "color : #394240;" for="username">Username:</label>
+                <input type="text" style = "color : #394240;" id="username" name="username"/>
+                
+                <label style = "color : #394240;" for="password">Password:</label>
+                <input style = "color : #394240;" type="text" id="password" name="password"/> 
+                <div> <button style = " background-color: white; margin-top : 10px; margin-bottom: 10px; width: 441px; color: #394240;" type="submit">Login</button> </div>
+            </form>
+            <div style = "color : #394240; text-align: left;"> <a>Don't have an account?</a> <a style = "display: inline-block;" href = "/register"> Register</a> </div>
+        </div>
+    </div>
+    
+  </main>
+  
+<%- include('../partials/footer.ejs') %>
