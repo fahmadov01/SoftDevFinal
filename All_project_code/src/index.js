@@ -41,6 +41,8 @@ db.connect()
 
 app.set('view engine', 'ejs'); // set the view engine to EJS
 app.use(bodyParser.json()); // specify the usage of JSON for parsing request body.
+app.use(express.static(__dirname + "/resources"));
+
 
 // initialize session variables
 app.use(
@@ -61,11 +63,6 @@ app.use(
 // <!-- Section 4 : API Routes -->
 // *****************************************************
 // TODO - Include your API routes here
-//dummy api to check for tests
-app.get('/welcome', (req, res) => {
-    res.json({status: 'success', message: 'Welcome!'});
-  });
-
 app.get('/', (req, res) => {
     res.redirect('/login'); //this will call the /anotherRoute route in the API
   });
@@ -137,21 +134,22 @@ app.post('/login', async (req, res) => {
 });
 
 // Authentication Middleware.
-const auth = (req, res, next) => {
-    if (!req.session.user) {
-      // Default to login page.
-      return res.redirect('/login');
-    }
-    next();
-  };
+// const auth = (req, res, next) => {
+//     if (!req.session.user) {
+//       // Default to login page.
+//       return res.redirect('/login');
+//     }
+//     next();
+//   };
   
   // Authentication Required
-app.use(auth);
+//app.use(auth);
+
 
 
 // *****************************************************
 // <!-- Section 5 : Start Server-->
 // *****************************************************
 // starting the server and keeping the connection open to listen for more requests
-module.exports = app.listen(3000);
+app.listen(3000);
 console.log('Server is listening on port 3000');
