@@ -29,7 +29,7 @@ describe('Server!', () => {
 
 //We are checking POST /add_user API by passing the user info in the correct order. This test case should pass and return a status 200 along with a "Success" message.
 //Positive cases
-it('positive : /reg', done => {
+it('positive : /register', done => {
   chai
     .request(server)
     .post('/register')
@@ -46,6 +46,17 @@ it('positive : /login', done => {
     .request(server)
     .post('/login')
     .send({username: 'John Doe', password: 'John'})
+    .end((err, res) => {
+      expect(res).to.have.status(200);
+      done();
+    });
+});
+
+it('Negative : /register. Checking invalid password', done => {
+  chai
+    .request(server)
+    .post('/register')
+    .send({username: 'John Doe', password:})
     .end((err, res) => {
       expect(res).to.have.status(200);
       done();
