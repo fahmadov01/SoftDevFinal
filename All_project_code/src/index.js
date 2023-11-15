@@ -100,10 +100,6 @@ app.post('/register', async (req, res) => {
 
 //login
 
-app.get("/login", (req, res) => {
-    res.render("pages/login");
-});
- 
 // app.post('/login', async (req, res) => {
 //     try{
 //         //do something
