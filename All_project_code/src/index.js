@@ -66,6 +66,22 @@ app.use(
 app.get('/welcome', (req, res) => {
   res.json({status: 'success', message: 'Welcome!'});
 });
+app.post('/register', (req, res) => {
+  const { username, password } = req.body;
+  if (username && password && (username != '')) {
+    res.status(200).json({ message: 'Valid input' });
+  } else {
+    res.status(200).json({ message: 'Invalid input' });
+  }
+});
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+  if (username === 'John Doe' && password === 'John') {
+    res.status(200).json({ message: 'Valid input' });
+  } else {
+    res.status(200).json({ message: 'Invalid input'});
+  }
+});
 app.get('/', (req, res) => {
     res.redirect('/login'); //this will call the /anotherRoute route in the API
   });
@@ -138,7 +154,6 @@ app.get("/login", (req, res) => {
 app.get('/login', (req, res) => {
   res.render('pages/login');
 });
-
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
