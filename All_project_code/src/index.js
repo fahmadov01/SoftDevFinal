@@ -184,7 +184,40 @@ const auth = (req, res, next) => {
 app.use(auth);
 
 app.get("/home", (req, res) => {
-  res.render("pages/home");
+  axios({
+    url: `http://eventregistry.org/api/v1/article/getArticles`,
+    method: 'GET',
+    dataType: 'json',
+    headers: {
+      'Accept-Encoding': 'application/json',
+    },
+    params: {
+        "lang": "eng",
+        "action": "getArticles",
+        "keyword": "Barack Obama",
+        "articlesPage": 1,
+        "articlesCount": 100,
+        "articlesSortBy": "date",
+        "articlesSortByAsc": false,
+        "articlesArticleBodyLen": -1,
+        "resultType": "articles",
+        "dataType": [
+          "news",
+          "pr"
+        ],
+        "apiKey": process.env.API_KEY,
+        "forceMaxDataTimeWindow": 31
+    }
+  })
+    .then(results => {
+      console.log(results.data.articles.results);
+      res.render('pages/home', { results: results.data.articles.results })
+
+    })
+    .catch(error => {
+      console.log(error);
+      res.render('pages/home', { err_results: [] })
+    });
 });
 
 app.get('/logout', (req, res) => {
