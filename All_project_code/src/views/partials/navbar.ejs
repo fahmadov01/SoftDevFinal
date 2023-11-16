@@ -69,7 +69,7 @@
         }
 
         nav a:hover {
-            color: #ffcc00; /* Change color on hover */
+            color: white; /* Change color on hover */
         }
 
         .top-news {
@@ -83,6 +83,43 @@
             padding: 10px;
             background-color: #eee;
         }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 200px; /* Increased width */
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            top: 100%; /* Position the dropdown below the button */
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 10px;
+            color: #000; /* Black text color */
+            text-decoration: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd; /* Change background color on hover */
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:after {
+            content: "\25BC"; /* Unicode character for down arrow */
+            font-size: 14px;
+            margin-left: 5px;
+        }
     </style>
 </head>
 <body>
@@ -90,31 +127,40 @@
     <nav>
         <h1>Your News Site</h1>
         <ul>
-            <li><a href="/home">Home</a></li>
-            <li><a href="#">Politics</a></li>
-            <li><a href="#">Technology</a></li>
-            <li><a href="#">Entertainment</a></li>
-<<<<<<< HEAD
-            <li><a href="/logout">logout</a></li>
-=======
-            <li><a href="#">Science</a></li>
->>>>>>> 06efca94f75cd5b1b1888b60b93b392782890f26
+            <li><a href="#">Home</a></li>
+            <li class="dropdown">
+                <a href="#">Categories</a>
+                <div class="dropdown-content">
+                    <a href="#">Politics</a>
+                    <a href="#">Technology</a>
+                    <a href="#">Entertainment</a>
+                    <a href="#">Science</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#">Account</a>
+                <div class="dropdown-content">
+                    <a href="#">Account Settings</a>
+                    <a href="#">Favorited Articles</a>
+                    <a href="#">Profile</a>
+                </div>
+            </li>
+            <li><a href="#">Logout</a></li>
         </ul>
     </nav>
 
-    <div class="top-news">
-        <h2>Top News</h2>
+    <!-- <div class="top-news">
+        <h2>Top News</h2> -->
         <!-- Add your top news content here -->
-        <p>Sample top news content goes here.</p>
-    </div>
+        <!-- <p>Sample top news content goes here.</p>
+    </div> -->
 
-    <div class="news-categories">
+    <!-- <div class="news-categories">
         <a href="#">Business</a>
         <a href="#">Health</a>
-        <a href="#">Sports</a>
+        <a href="#">Sports</a> -->
         <!-- Add more news categories as needed -->
-    </div>
+    <!-- </div> -->
 
 </body>
 </html>
-
