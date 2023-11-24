@@ -188,7 +188,45 @@ const auth = (req, res, next) => {
 app.use(auth);
 
 app.get("/home", (req, res) => {
+<<<<<<< Updated upstream
   res.render("pages/home");
+=======
+  const var1 = 5;
+  axios({
+    url: `http://eventregistry.org/api/v1/article/getArticles`,
+    method: 'GET',
+    dataType: 'json',
+    headers: {
+      'Accept-Encoding': 'application/json',
+    },
+    params: {
+        "lang": "eng",
+        "action": "getArticles",
+        "keyword": "Barack Obama",
+        "articlesPage": 1,
+        "articlesCount": var1,
+        "articlesSortBy": "date",
+        "articlesSortByAsc": false,
+        "articlesArticleBodyLen": -1,
+        "resultType": "articles",
+        "dataType": [
+          "news",
+          "pr"
+        ],
+        "apiKey": process.env.API_KEY,
+        "forceMaxDataTimeWindow": 31
+    }
+  })
+    .then(results => {
+      console.log(results.data.articles.results);
+      res.render('pages/home', { results: results.data.articles.results })
+
+    })
+    .catch(error => {
+      console.log(error);
+      res.render('pages/home', { err_results: [] })
+    });
+>>>>>>> Stashed changes
 });
 
 app.get('/logout', (req, res) => {
