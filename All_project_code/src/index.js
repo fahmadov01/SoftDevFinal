@@ -63,25 +63,7 @@ app.use(
 // <!-- Section 4 : API Routes -->
 // *****************************************************
 // TODO - Include your API routes here
-// app.get('/welcome', (req, res) => {
-//   res.json({status: 'success', message: 'Welcome!'});
-// });
-// app.post('/register', (req, res) => {
-//   const { username, password } = req.body;
-//   if (username && password && (username != '')) {
-//     res.status(200).json({ message: 'Valid input' });
-//   } else {
-//     res.status(200).json({ message: 'Invalid input' });
-//   }
-// });
-// app.post('/login', (req, res) => {
-//   const { username, password } = req.body;
-//   if (username === 'John Doe' && password === 'John') {
-//     res.status(200).json({ message: 'Valid input' });
-//   } else {
-//     res.status(200).json({ message: 'Invalid input'});
-//   }
-// });
+
 app.get('/', (req, res) => {
     res.redirect('/login'); //this will call the /anotherRoute route in the API
   });
@@ -114,39 +96,6 @@ app.post('/register', async (req, res) => {
     }
 });
 
-//login
-
-// app.post('/login', async (req, res) => {
-//     try{
-//         //do something
-//         // check if password from request matches with password in DB
-//         const user = `select password from users where username = $1;`;
-//         const password = await db.any(user, [req.body.username])
-
-
-//         if(password.length === 0)
-//         {
-//             throw new Error('User not found')
-//         }
-//         const match = await bcrypt.compare(req.body.password, password[0].password);
-//         if(match.err) 
-//         {
-//             console.log('Incorrect username or password');
-//             res.redirect("/login");
-//         }
-//         else 
-//         { 
-//             req.session.user = user;
-//             req.session.save();
-
-//             res.redirect("/home");
-//         }
-//     }
-//     catch(err){
-//         console.log(err);
-//         res.render("pages/register", {message: err});
-//     }
-// });
 app.get('/login', (req, res) => {
   res.render('pages/login');
 });
@@ -174,17 +123,6 @@ app.post('/login', async (req, res) => {
     res.redirect('/register');
   }
 });
-
-
-// const auth = (req, res, next) => {
-//   if (!req.session.user) {
-//     return res.redirect("/login");
-//   }
-//   next();
-// };
-
-// app.use(auth);
-
 
 // Authentication Middleware.
 const auth = (req, res, next) => {
@@ -223,7 +161,8 @@ app.get("/home", (req, res) => {
           "pr"
         ],
         "apiKey": process.env.API_KEY,
-        "forceMaxDataTimeWindow": 31
+        "forceMaxDataTimeWindow": 31,
+        "includeArticleCategories" : true
     }
   })
     .then(results => {
@@ -237,12 +176,64 @@ app.get("/home", (req, res) => {
     });
 });
 
-app.get('/logout', (req, res) => {
+app.get('/logout', async (req, res) => {
+  console.log('Button clicked!');
   req.session.destroy();
   res.render("pages/login");
 });
+app.get('/politics', async (req, res) => {
+  res.render("pages/politics");
+});
+app.get('/science', async (req, res) => {
+  res.render("pages/science");
+});
+app.get('/entertainment', async (req, res) => {
+  res.render("pages/entertainment");
+});
+app.get('/technology', async (req, res) => {
+  res.render("pages/technology");
+});
 
+// user can search for articles based on keyword
+app.get('/search', async (req, res) => {
+  const search_word = req.query.q;
+  axios({
+    url: `http://eventregistry.org/api/v1/article/getArticles`,
+    method: 'GET',
+    dataType: 'json',
+    headers: {
+      'Accept-Encoding': 'application/json',
+    },
+    params: {
+        "lang": "eng",
+        "action": "getArticles",
+        "keyword": search_word,
+        "articlesPage": 1,
+        "articlesCount": 5,
 
+        "articlesSortBy": "rel",
+        "articlesSortByAsc": false,
+        "articlesArticleBodyLen": -1,
+        "resultType": "articles",
+        "dataType": [
+          "news",
+          "pr"
+        ],
+        "apiKey": process.env.API_KEY,
+        "forceMaxDataTimeWindow": 31,
+        "includeArticleCategories" : true
+    }
+  })
+    .then(results => {
+      console.log(search_word);
+      res.render('pages/home', { results: results.data.articles.results })
+
+    })
+    .catch(error => {
+      console.log(error);
+      res.render('pages/home', { err_results: [] })
+    });
+});
 
 // *****************************************************
 // <!-- Section 5 : Start Server-->

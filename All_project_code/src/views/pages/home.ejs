@@ -1,13 +1,5 @@
+<%- include('../partials/header.ejs') %>
 <%- include('../partials/navbar.ejs') %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
     <main>
         <div class="container">
           <% if (locals.message) { %>
@@ -25,6 +17,7 @@
                   <th scope="row">Date</th>
                   <th scope="row">Time</th>
                   <th scope="row">Title</th>
+                  <th scope="row">cat</th>
                 </tr>
               </thead>
       
@@ -35,6 +28,7 @@
                      <td> <%= events.date %> </td>
                     <td> <%= events.time %> </td>
                     <td> <%= events.title %> </td>
+                    <td> <%= events.categories[0].label %> </td>
                   </tr>
                 <% }); %>
               </tbody>

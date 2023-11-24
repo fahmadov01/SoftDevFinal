@@ -125,16 +125,20 @@
 <body>
 
     <nav>
-        <h1>Your News Site</h1>
+        <form action="/search" method="GET">
+            <label for="searchQuery">Search for articles by keyword:</label>
+            <input type="text" id="searchQuery" name="q" placeholder="Enter your search query">
+            <button type="submit">Search</button>
+        </form>
         <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="/home">Home</a></li>
             <li class="dropdown">
                 <a href="#">Categories</a>
                 <div class="dropdown-content">
-                    <a href="#">Politics</a>
-                    <a href="#">Technology</a>
-                    <a href="#">Entertainment</a>
-                    <a href="#">Science</a>
+                    <a href="/politics">Politics</a>
+                    <a href="/technology">Technology</a>
+                    <a href="/entertainment">Entertainment</a>
+                    <a href="/science">Science</a>
                 </div>
             </li>
             <li class="dropdown">
@@ -145,9 +149,11 @@
                     <a href="#">Profile</a>
                 </div>
             </li>
-            <li><a href="#">Logout</a></li>
+            <li><a href = "/logout">Logout</a></li>
         </ul>
     </nav>
+
+
 
     <!-- <div class="top-news">
         <h2>Top News</h2> -->
