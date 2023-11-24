@@ -188,9 +188,6 @@ const auth = (req, res, next) => {
 app.use(auth);
 
 app.get("/home", (req, res) => {
-<<<<<<< Updated upstream
-  res.render("pages/home");
-=======
   const var1 = 5;
   axios({
     url: `http://eventregistry.org/api/v1/article/getArticles`,
@@ -226,7 +223,6 @@ app.get("/home", (req, res) => {
       console.log(error);
       res.render('pages/home', { err_results: [] })
     });
->>>>>>> Stashed changes
 });
 
 app.get('/logout', (req, res) => {
