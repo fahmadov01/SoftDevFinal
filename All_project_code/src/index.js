@@ -182,47 +182,158 @@ app.get('/logout', async (req, res) => {
   res.render("pages/login", { message: 'Logged out Successfully' });
 });
 app.get('/politics', async (req, res) => {
-  res.render("pages/politics");
+  axios({
+    url: `http://eventregistry.org/api/v1/article/getArticles`,
+    method: 'GET',
+    dataType: 'json',
+    headers: {
+      'Accept-Encoding': 'application/json',
+    },
+    params: {
+        "lang": "eng",
+        "action": "getArticles",
+        "categoryUri": "dmoz/Society/Politics",
+        "articlesPage": 1,
+        "articlesCount": 10,
+
+        "articlesSortBy": "date",
+        "articlesSortByAsc": false,
+        "articlesArticleBodyLen": -1,
+        "resultType": "articles",
+        "dataType": [
+          "news",
+          "pr"
+        ],
+        "apiKey": process.env.API_KEY,
+        "forceMaxDataTimeWindow": 31,
+        "includeArticleCategories" : true
+    }
+  })
+    .then(results => {
+      console.log(results.data.articles.results);
+      res.render('pages/politics', { results: results.data.articles.results })
+
+    })
+    .catch(error => {
+      console.log(error);
+      res.render('pages/politics', { err_results: [] })
+    });
 });
 app.get('/science', async (req, res) => {
-  res.render("pages/science");
-});
-app.get('/entertainment', async (req, res) => {
-    axios({
-      url: `http://eventregistry.org/api/v1/article/getArticles`,
-      method: 'GET',
-      dataType: 'json',
-      headers: {
-        'Accept-Encoding': 'application/json',
-      },
-      params: {
-          "lang": "eng",
-          "action": "getArticles",
-          "articlesPage": 1,
-          "articlesCount": 10,
-          "articlesSortBy": "rel",
-          "articlesSortByAsc": false,
-          "articlesArticleBodyLen": -1,
-          "resultType": "articles",
-          "dataType": [
-            "news",
-            "pr"
-          ],
-          "apiKey": process.env.API_KEY,
-          "forceMaxDataTimeWindow": 31,
-          "includeArticleCategories" : true
-      }
+  axios({
+    url: `http://eventregistry.org/api/v1/article/getArticles`,
+    method: 'GET',
+    dataType: 'json',
+    headers: {
+      'Accept-Encoding': 'application/json',
+    },
+    params: {
+        "lang": "eng",
+        "action": "getArticles",
+        "categoryUri": "dmoz/Science",
+        "articlesPage": 1,
+        "articlesCount": 10,
+
+        "articlesSortBy": "date",
+        "articlesSortByAsc": false,
+        "articlesArticleBodyLen": -1,
+        "resultType": "articles",
+        "dataType": [
+          "news",
+          "pr"
+        ],
+        "apiKey": process.env.API_KEY,
+        "forceMaxDataTimeWindow": 31,
+        "includeArticleCategories" : true
+    }
+  })
+    .then(results => {
+      console.log(results.data.articles.results);
+      res.render('pages/science', { results: results.data.articles.results })
+
     })
-      .then(results => {
-        res.render('pages/entertainment', { results: results.data.articles.results })
-      })
-      .catch(error => {
-        console.log(error);
-        res.render('pages/entertainment', { err_results: [] })
-      });
+    .catch(error => {
+      console.log(error);
+      res.render('pages/science', { err_results: [] })
+    });
 });
-app.get('/technology', async (req, res) => {
-  res.render("pages/technology");
+
+app.get('/business', async (req, res) => {
+  axios({
+    url: `http://eventregistry.org/api/v1/article/getArticles`,
+    method: 'GET',
+    dataType: 'json',
+    headers: {
+      'Accept-Encoding': 'application/json',
+    },
+    params: {
+        "lang": "eng",
+        "action": "getArticles",
+        "categoryUri": "dmoz/Business",
+        "articlesPage": 1,
+        "articlesCount": 10,
+
+        "articlesSortBy": "date",
+        "articlesSortByAsc": false,
+        "articlesArticleBodyLen": -1,
+        "resultType": "articles",
+        "dataType": [
+          "news",
+          "pr"
+        ],
+        "apiKey": process.env.API_KEY,
+        "forceMaxDataTimeWindow": 31,
+        "includeArticleCategories" : true
+    }
+  })
+    .then(results => {
+      console.log(results.data.articles.results);
+      res.render('pages/business', { results: results.data.articles.results })
+
+    })
+    .catch(error => {
+      console.log(error);
+      res.render('pages/business', { err_results: [] })
+    });
+});
+
+app.get('/sports', async (req, res) => {
+  axios({
+    url: `http://eventregistry.org/api/v1/article/getArticles`,
+    method: 'GET',
+    dataType: 'json',
+    headers: {
+      'Accept-Encoding': 'application/json',
+    },
+    params: {
+        "lang": "eng",
+        "action": "getArticles",
+        "categoryUri": "dmoz/Sports",
+        "articlesPage": 1,
+        "articlesCount": 10,
+
+        "articlesSortBy": "date",
+        "articlesSortByAsc": false,
+        "articlesArticleBodyLen": -1,
+        "resultType": "articles",
+        "dataType": [
+          "news",
+          "pr"
+        ],
+        "apiKey": process.env.API_KEY,
+        "forceMaxDataTimeWindow": 31,
+        "includeArticleCategories" : true
+    }
+  })
+    .then(results => {
+      console.log(results.data.articles.results);
+      res.render('pages/sports', { results: results.data.articles.results })
+
+    })
+    .catch(error => {
+      console.log(error);
+      res.render('pages/sports', { err_results: [] })
+    });
 });
 
 // user can search for articles based on keyword
