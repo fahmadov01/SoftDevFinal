@@ -179,7 +179,7 @@ app.get("/home", (req, res) => {
 app.get('/logout', async (req, res) => {
   console.log('Button clicked!');
   req.session.destroy();
-  res.render("pages/login");
+  res.render("pages/login", { message: 'Logged out Successfully' });
 });
 app.get('/politics', async (req, res) => {
   res.render("pages/politics");
