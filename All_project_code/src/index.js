@@ -188,7 +188,38 @@ app.get('/science', async (req, res) => {
   res.render("pages/science");
 });
 app.get('/entertainment', async (req, res) => {
-  res.render("pages/entertainment");
+    axios({
+      url: `http://eventregistry.org/api/v1/article/getArticles`,
+      method: 'GET',
+      dataType: 'json',
+      headers: {
+        'Accept-Encoding': 'application/json',
+      },
+      params: {
+          "lang": "eng",
+          "action": "getArticles",
+          "articlesPage": 1,
+          "articlesCount": 10,
+          "articlesSortBy": "rel",
+          "articlesSortByAsc": false,
+          "articlesArticleBodyLen": -1,
+          "resultType": "articles",
+          "dataType": [
+            "news",
+            "pr"
+          ],
+          "apiKey": process.env.API_KEY,
+          "forceMaxDataTimeWindow": 31,
+          "includeArticleCategories" : true
+      }
+    })
+      .then(results => {
+        res.render('pages/entertainment', { results: results.data.articles.results })
+      })
+      .catch(error => {
+        console.log(error);
+        res.render('pages/entertainment', { err_results: [] })
+      });
 });
 app.get('/technology', async (req, res) => {
   res.render("pages/technology");
@@ -209,8 +240,7 @@ app.get('/search', async (req, res) => {
         "action": "getArticles",
         "keyword": search_word,
         "articlesPage": 1,
-        "articlesCount": 5,
-
+        "articlesCount": 10,
         "articlesSortBy": "rel",
         "articlesSortByAsc": false,
         "articlesArticleBodyLen": -1,
@@ -226,12 +256,12 @@ app.get('/search', async (req, res) => {
   })
     .then(results => {
       console.log(search_word);
-      res.render('pages/home', { results: results.data.articles.results })
+      res.render('pages/search', { results: results.data.articles.results })
 
     })
     .catch(error => {
       console.log(error);
-      res.render('pages/home', { err_results: [] })
+      res.render('pages/search', { err_results: [] })
     });
 });
 
