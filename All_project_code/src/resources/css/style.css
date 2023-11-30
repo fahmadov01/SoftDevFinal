@@ -133,7 +133,8 @@
 .carousel-inner > .carousel-item > .carousel-image{
     margin: auto;
     margin-top: 10px;
-    height: 500px;
+    height: auto;
+    max-height: 500px;
     width: 1000px;
     display: block;
     text-align: center;
