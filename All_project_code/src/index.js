@@ -175,6 +175,9 @@ app.get("/home", (req, res) => {
       res.render('pages/home', { err_results: [] })
     });
 });
+app.get("/profile", (req, res) => {
+  res.render("pages/profile");
+});
 
 app.get('/logout', async (req, res) => {
   console.log('Button clicked!');
