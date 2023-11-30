@@ -1,22 +1,26 @@
 <%- include('../partials/header.ejs') %>
 <%- include('../partials/navbar.ejs') %>
-<h1 style="text-align: center;">News in this category</h1>
+
+<h1 style="text-align: center;">News in Sports</h1>
 
 <div>
-    <div class="row">
-        <% results.forEach((result) => { %>
-            <% if(result.image){%>
-            <div class="col-sm-3">
-                <div class="card" style="background-color: bisque;">
-                    <div class="card-body">
-                        <img src="<%= result.image %>" class="card-img-top" alt="error">
-                        <a class="card-title" style="text-align: center; display: block; font-size: 1rem; text-decoration: none; color: #333;" href="<%= result.url %>"><%= result.title %></a>
+  <div class="row" style = "padding:15 rem">
+      <% results.forEach((result) => { %>
+          <% if(result.image){%>
+          <div class="col-sm-3">
+              <div class="card" style="background-color: bisque; height: 15rem;">
+                  <div class="card-body">
+                    <a class="card-title" style="text-align: center; display: block; text-decoration: underline; color: #333;" href="<%= result.url %>"><%= result.title %></a>
+                    <div class = "image-container">
+                      <img src="<%= result.image %>" class="card-img-top" alt="error loading image">
                     </div>
-                </div>
-            </div>
-            <%}%>
-        <% }); %>
-    </div>
+                  </div>
+              </div>
+          </div>
+          <%}%>
+      <% }); %>
+  </div>
 </div>
+
 
 <%- include('../partials/footer.ejs') %>

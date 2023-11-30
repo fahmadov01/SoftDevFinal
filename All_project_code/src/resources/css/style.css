@@ -84,3 +84,13 @@
     background-image: url('../images/news.jpg');
     background-size: cover;
 }
+
+.image-container {
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  .image-container img {
+    object-fit: contain;
+    display: block; /* Remove extra space below the image */
+  }
