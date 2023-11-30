@@ -1,0 +1,40 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/navbar.ejs') %>
+    <main>
+        <div class="container">
+          <% if (locals.message) { %>
+              <div
+                class="alert alert-<%- locals.error ? 'danger' : 'success' %>"
+                role="alert"
+              >
+                <%= locals.message %>
+              </div>
+              <% } %>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="row">URL</th>
+                  <th scope="row">Date</th>
+                  <th scope="row">Time</th>
+                  <th scope="row">Title</th>
+                  <th scope="row">cat</th>
+                </tr>
+              </thead>
+      
+              <tbody>
+                <% results.forEach((events) => {%>
+                  <tr>
+                    <td><%= events.url %></td>
+                     <td> <%= events.date %> </td>
+                    <td> <%= events.time %> </td>
+                    <td> <%= events.title %> </td>
+                    <td> <%= events.categories[0].label %> </td>
+                  </tr>
+                <% }); %>
+              </tbody>
+            </table>
+        </div>
+      </main>
+</body>
+</html>
+<%- include('../partials/footer.ejs') %>
