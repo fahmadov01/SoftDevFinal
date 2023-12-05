@@ -176,8 +176,12 @@ app.get("/home", (req, res) => {
     });
 });
 app.get("/profile", (req, res) => {
-  res.render("pages/profile");
+  res.render("pages/profile", {
+    username: req.session.user.username,
+    password: req.session.user.password
+  })
 });
+
 
 app.get('/logout', async (req, res) => {
   console.log('Button clicked!');
