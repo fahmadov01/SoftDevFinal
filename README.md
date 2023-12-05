@@ -8,27 +8,27 @@ This application is an all in one news source application where a user can creat
 Jeremy Varghese, Farid Ahmadov, Christian Ortiz, and Zach Conroy
 
 **3) Technology Stack Used**
-1.Sql/Postgres
-2.Html
-3.Css 
-4.Javascript 
-5.Ejs 
-6.Bootstrap
-7.Docker
+1. Sql/Postgres
+2. Html
+3. Css 
+4. Javascript 
+5. Ejs 
+6. Bootstrap
+7. Docker
 
 **4)Prerequisites to run the application**
 Docker 
 
 **5)Instructions on how to run the application locally**
-1.Download all the files 
-2.Start up docker
-3.Open localhost:3000
-4.Register if you don't have an account and then login
-5.Explore the pages
-6.Optional Favorite an article
+1. Download all the files 
+2. Start up docker
+3. Open localhost:3000
+4. Register if you don't have an account and then login
+5. Explore the pages
+6. Optional Favorite an article
 
 **6)How to run the test cases**
-1.Start docker and run the container and this should run the tests 
+1. Start docker and run the container and this should run the tests 
 
 **7)Link to Application**
 ADD THIS
