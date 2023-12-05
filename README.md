@@ -16,10 +16,10 @@ Jeremy Varghese, Farid Ahmadov, Christian Ortiz, and Zach Conroy
 6.Bootstrap
 7.Docker
 
-**4)Prerequisites to run the application
+**4)Prerequisites to run the application**
 Docker 
 
-**5)Instructions on how to run the application locally
+**5)Instructions on how to run the application locally**
 1.Download all the files 
 2.Start up docker
 3.Open localhost:3000
@@ -27,10 +27,10 @@ Docker
 5.Explore the pages
 6.Optional Favorite an article
 
-**6)How to run the test cases 
+**6)How to run the test cases**
 1.Start docker and run the container and this should run the tests 
 
-**7)Link to Application
+**7)Link to Application**
 ADD THIS
 
 
