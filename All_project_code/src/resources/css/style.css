@@ -1,3 +1,4 @@
+/*Register page styling*/
 #reg_page {
     margin-left: 525px;
     margin-top: 150px;
@@ -5,7 +6,7 @@
     height: 500px;
     background: transparent;
     border: 3px solid aliceblue;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(15px);
     align-items: center;
     display: flex;
     justify-content: center;
@@ -84,6 +85,7 @@
     background-image: url('../images/news.jpg');
     background-size: cover;
 }
+<<<<<<< HEAD
 
 .image-container {
     flex-grow: 1;
@@ -94,3 +96,89 @@
     object-fit: contain;
     display: block; /* Remove extra space below the image */
   }
+=======
+/*End of register page styling*/
+
+/*Home page styling*/
+
+.homeLogo > .homePageLogo{
+    height: 100px;
+    width: 100px;
+    bottom: 10px;
+    margin-left: 30px;
+    margin-top: 10px;
+    border: 5px solid black;
+}
+
+.homeLogo > .homePageBusiness
+{
+    margin-left: 400px;
+    text-decoration: none;
+}
+
+.homeLogo > .homePageScience
+{
+    margin-left: 30px;
+    text-decoration: none;
+}
+
+.homeLogo > .homePagePolitics
+{
+    margin-left: 30px;
+    text-decoration: none;
+}
+
+.homeLogo > .homePageSports
+{
+    margin-left: 30px;
+}
+
+.homeHeader{
+    font-weight: bold;
+    font-size: xx-large;
+    margin-left: 530px;
+    text-decoration: wavy;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+.carousel-inner > .carousel-item > .carousel-image{
+    margin: auto;
+    margin-top: 10px;
+    height: auto;
+    max-height: 500px;
+    width: 1000px;
+    display: block;
+    text-align: center;
+}
+
+.prevButton > .carousel-control-prev
+{
+    margin-left: 140px;
+    margin-top: 30px;
+}
+
+.nextButton > .carousel-control-next
+{
+    margin-right: 140px;
+    margin-top: 40px;
+}
+
+#carousellink
+{
+    font-weight: bold;
+    color: aliceblue;
+    -webkit-text-stroke: 1px;
+    -webkit-text-stroke-color: black;
+    text-decoration: none;
+}
+
+#carouseldate
+{
+    font-weight: bold;
+    color: aliceblue;
+    -webkit-text-stroke: 1px;
+    -webkit-text-stroke-color: black;
+    text-decoration: none;
+    font-size: x-large;
+}
