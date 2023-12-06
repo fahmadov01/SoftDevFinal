@@ -395,6 +395,48 @@ app.get('/search', async (req, res) => {
     });
 });
 
+app.post('/like_article', async (req, res) => { 
+  const title = req.body.title;
+  const url = req.body.url;
+  const img = req.body.img;
+
+  const sqlQuery = `INSERT INTO liked_articles(article_title, article_url, article_img) values ($1, $2, $3) returning *;`;
+
+  db.any(sqlQuery,[title, url, img])
+        .then(() => {
+            res.redirect("/favorited_articles");
+        });
+});
+
+app.get('/favorited_articles', async (req, res) => {
+  const likes = `SELECT * FROM liked_articles`
+
+  db.any(likes)
+  .then(articles => {
+    res.render("pages/favorited_articles", {articles});
+    console.log(articles);
+  })
+  .catch(error => {
+    console.error('Error executing query:', error);
+  });
+});
+
+app.post('/remove_article', async (req, res) => { 
+  const url = req.body.url;
+
+  const deleteQuery = 'DELETE FROM liked_articles WHERE article_url = $1';
+
+db.none(deleteQuery, [url])
+  .then(() => {
+    console.log('Row deleted successfully');
+    res.redirect("/favorited_articles");
+  })
+  .catch(error => {
+    console.error('Error deleting row:', error);
+  });
+
+});
+
 // *****************************************************
 // <!-- Section 5 : Start Server-->
 // *****************************************************
