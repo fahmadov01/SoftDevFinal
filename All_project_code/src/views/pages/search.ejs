@@ -10,25 +10,23 @@
                 <%= locals.message %>
               </div>
               <% } %>
+              <h1>Your search results:</h1>
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="row">URL</th>
+                    <th scope="row">Title</th>
                   <th scope="row">Date</th>
-                  <th scope="row">Time</th>
-                  <th scope="row">Title</th>
-                  <th scope="row">cat</th>
+                  <th scope="row">Image</th>
                 </tr>
               </thead>
       
               <tbody>
                 <% results.forEach((events) => {%>
                   <tr>
-                    <td><%= events.url %></td>
+                    <td> <a href = <%= events.url %>><%= events.title %> </a></td>
                     <td> <%= events.date %> </td>
-                    <td> <%= events.time %> </td>
-                    <td> <%= events.title %> </td>
-                    <td> <%= events.categories[0].label %> </td>
+                    <td> <img src = <%= events.image %> height = auto width = 250px> <img></td>
+                    
                   </tr>
                 <% }); %>
               </tbody>

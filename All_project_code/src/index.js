@@ -89,9 +89,7 @@ app.post('/register', async (req, res) => {
         })
         .catch((err) => {
             console.log(err);
-            res.render("pages/register",{
-                message: `User already exists`,
-            });
+            res.render("pages/register", { message: 'Username is already taken' });
           });
     }
 });
