@@ -11,6 +11,13 @@
                     <div class="card-body">
                         <img src="<%= result.image %>" class="card-img-top" alt="error">
                         <a class="card-title" style="text-align: center; display: block; font-size: 1rem; text-decoration: none; color: #333;" href="<%= result.url %>"><%= result.title %></a>
+                        
+                        <form action="/like_article" method="post">
+                            <input type="hidden" name="url" value="<%= result.url%>">
+                            <input type="hidden" name="title" value="<%= result.title%>">
+                            <input type="hidden" name="img" value="<%= result.image%>">
+                            <button type="submit" id="like">Like Article</button>
+                        </form>
                     </div>
                 </div>
             </div>
