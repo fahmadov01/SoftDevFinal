@@ -85,7 +85,6 @@
     background-image: url('../images/news.jpg');
     background-size: cover;
 }
-<<<<<<< HEAD
 
 .image-container {
     flex-grow: 1;
@@ -96,7 +95,6 @@
     object-fit: contain;
     display: block; /* Remove extra space below the image */
   }
-=======
 /*End of register page styling*/
 
 /*Home page styling*/

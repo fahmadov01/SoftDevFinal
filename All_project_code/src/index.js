@@ -149,7 +149,7 @@ app.get("/home", (req, res) => {
         "lang": "eng",
         "action": "getArticles",
         "articlesPage": 1,
-        "articlesCount": 10,
+        "articlesCount": 25,
 
         "articlesSortBy": "socialScore",
         "articlesSortByAsc": false,
@@ -197,9 +197,8 @@ app.get('/politics', async (req, res) => {
         "action": "getArticles",
         "categoryUri": "dmoz/Society/Politics",
         "articlesPage": 1,
-        "articlesCount": 10,
+        "articlesCount": 20,
 
-        "articlesSortBy": "date",
         "articlesSortByAsc": false,
         "articlesArticleBodyLen": -1,
         "resultType": "articles",
@@ -209,7 +208,10 @@ app.get('/politics', async (req, res) => {
         ],
         "apiKey": process.env.API_KEY,
         "forceMaxDataTimeWindow": 31,
-        "includeArticleCategories" : true
+        "isDuplicateFilter" : "skipDuplicates",
+        "keywordLoc" : "title",
+        "articlesSortBy" : "sourceImportance",
+        "dateStart" : "2023-12-01",
     }
   })
     .then(results => {
@@ -235,9 +237,8 @@ app.get('/science', async (req, res) => {
         "action": "getArticles",
         "categoryUri": "dmoz/Science",
         "articlesPage": 1,
-        "articlesCount": 10,
+        "articlesCount": 20,
 
-        "articlesSortBy": "date",
         "articlesSortByAsc": false,
         "articlesArticleBodyLen": -1,
         "resultType": "articles",
@@ -247,7 +248,11 @@ app.get('/science', async (req, res) => {
         ],
         "apiKey": process.env.API_KEY,
         "forceMaxDataTimeWindow": 31,
-        "includeArticleCategories" : true
+        "includeArticleCategories" : true,
+        "isDuplicateFilter" : "skipDuplicates",
+        "keywordLoc" : "title",
+        "articlesSortBy" : "sourceImportance",
+        "dateStart" : "2023-12-01",
     }
   })
     .then(results => {
@@ -274,9 +279,8 @@ app.get('/business', async (req, res) => {
         "action": "getArticles",
         "categoryUri": "dmoz/Business",
         "articlesPage": 1,
-        "articlesCount": 10,
+        "articlesCount": 20,
 
-        "articlesSortBy": "date",
         "articlesSortByAsc": false,
         "articlesArticleBodyLen": -1,
         "resultType": "articles",
@@ -286,7 +290,11 @@ app.get('/business', async (req, res) => {
         ],
         "apiKey": process.env.API_KEY,
         "forceMaxDataTimeWindow": 31,
-        "includeArticleCategories" : true
+        "includeArticleCategories" : true,
+        "isDuplicateFilter" : "skipDuplicates",
+        "keywordLoc" : "title",
+        "articlesSortBy" : "sourceImportance",
+        "dateStart" : "2023-12-01",
     }
   })
     .then(results => {
@@ -313,9 +321,8 @@ app.get('/sports', async (req, res) => {
         "action": "getArticles",
         "categoryUri": "dmoz/Sports",
         "articlesPage": 1,
-        "articlesCount": 10,
+        "articlesCount": 20,
 
-        "articlesSortBy": "date",
         "articlesSortByAsc": false,
         "articlesArticleBodyLen": -1,
         "resultType": "articles",
@@ -325,7 +332,11 @@ app.get('/sports', async (req, res) => {
         ],
         "apiKey": process.env.API_KEY,
         "forceMaxDataTimeWindow": 31,
-        "includeArticleCategories" : true
+        "includeArticleCategories" : true,
+        "isDuplicateFilter" : "skipDuplicates",
+        "keywordLoc" : "title",
+        "articlesSortBy" : "sourceImportance",
+        "dateStart" : "2023-12-01",
     }
   })
     .then(results => {
@@ -354,7 +365,7 @@ app.get('/search', async (req, res) => {
         "action": "getArticles",
         "keyword": search_word,
         "articlesPage": 1,
-        "articlesCount": 10,
+        "articlesCount": 20,
         "articlesSortBy": "rel",
         "articlesSortByAsc": false,
         "articlesArticleBodyLen": -1,
@@ -365,7 +376,10 @@ app.get('/search', async (req, res) => {
         ],
         "apiKey": process.env.API_KEY,
         "forceMaxDataTimeWindow": 31,
-        "includeArticleCategories" : true
+        "includeArticleCategories" : true,
+        "isDuplicateFilter" : "skipDuplicates",
+        "keywordLoc" : "title",
+        "dateStart" : "2023-12-01",
     }
   })
     .then(results => {
