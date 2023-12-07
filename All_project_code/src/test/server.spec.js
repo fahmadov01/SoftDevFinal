@@ -23,7 +23,7 @@ describe('Server!', () => {
       });
   });
     it('Positive: successful register', done => {
-    const username = '9182098234';
+    const username = '1';
     const password = '1';
     chai
       .request(server)
