@@ -8,5 +8,7 @@ DROP TABLE IF EXISTS liked_articles;
 CREATE TABLE IF NOT EXISTS liked_articles (
     article_title VARCHAR(1000) NOT NULL,
     article_url VARCHAR(1000) NOT NULL,
-    article_img VARCHAR(1000) NOT NULL
+    article_img VARCHAR(1000) NOT NULL,
+    username VARCHAR(50),
+    FOREIGN KEY (username) REFERENCES users(username)
 );
