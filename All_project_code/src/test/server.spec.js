@@ -80,7 +80,7 @@ describe('Server!', () => {
         done();
       });
   });
-  it('Negative: unsuccessful register', done => {
+  it('Negative: unsuccessful login', done => {
     const username = '1234555555';
     const password = '1';
     chai
