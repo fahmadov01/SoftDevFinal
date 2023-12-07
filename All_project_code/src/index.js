@@ -100,6 +100,7 @@ app.get('/login', (req, res) => {
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
+    req.session.username = username;
   // To-Do: Fetch the user from the 'users' table using the username
   const user = await db.oneOrNone('SELECT * FROM users WHERE username = $1', [username]);
 
@@ -399,17 +400,44 @@ app.post('/like_article', async (req, res) => {
   const title = req.body.title;
   const url = req.body.url;
   const img = req.body.img;
+  let username = req.session.username;
+  const sqlQuery = `INSERT INTO articles(article_title, article_url, article_img) values ($1, $2, $3) returning *;`;
+  const query_2 = 'INSERT INTO user_likes_article(article_id, username) VALUES ($4, $5);';
 
-  const sqlQuery = `INSERT INTO liked_articles(article_title, article_url, article_img) values ($1, $2, $3) returning *;`;
-
-  db.any(sqlQuery,[title, url, img])
-        .then(() => {
-            res.redirect("/favorited_articles");
-        });
+  /* 
+    insert the article into the articles table, get the article id
+    get the username from the session
+    insert the username and the article into the users_to_articles table using the article id and the username
+  */
+ 
+  db.any(sqlQuery,[title, url, img]) // run sql query to add the articles into art table
+        .then((data) => 
+        {
+          let art_id = data[0].article_id;
+          console.log(data);
+          db.none(query_2,[art_id, username]) // run sql query to add insert username and art into u_t_a table
+            .then(() => 
+            {
+                res.redirect(pages/favorited_articles);
+                console.log('added tables successfully');
+            })
+            .catch(()=>
+            {
+              console.log(username);
+              console.log(art_id);
+              console.log(typeof username);
+              console.log(typeof art_id);
+              console.log('error inserting into the uta table');
+            });
+        })
+        .catch(()=>
+            {
+              console.log('error inserting into the articles table');
+            });
 });
 
 app.get('/favorited_articles', async (req, res) => {
-  const likes = `SELECT * FROM liked_articles`
+  const likes = `SELECT * FROM articles JOIN user_likes_article ON users_likes_articles.article_id = articles.article_id WHERE user_likes_article.username = $1`;
 
   db.any(likes)
   .then(articles => {
@@ -424,7 +452,7 @@ app.get('/favorited_articles', async (req, res) => {
 app.post('/remove_article', async (req, res) => { 
   const url = req.body.url;
 
-  const deleteQuery = 'DELETE FROM liked_articles WHERE article_url = $1';
+  const deleteQuery = 'DELETE FROM articles WHERE article_url = $1';
 
 db.none(deleteQuery, [url])
   .then(() => {
