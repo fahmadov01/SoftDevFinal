@@ -1,25 +1,39 @@
 <%- include('../partials/header.ejs') %>
 <%- include('../partials/navbar.ejs') %>
-<h1 style="text-align: center;">Favorited Articles</h1>
 
-<div>
-    <div class="row">
-        <% articles.forEach((article) => { %>
-            <div class="col-sm-3">
-                <div class="card" style="background-color: bisque;">
-                    <div class="card-body">
-                        <img src="<%= article.article_img %>" class="card-img-top" alt="error">
-                        <a class="card-title" style="text-align: center; display: block; font-size: 1rem; text-decoration: none; color: #333;" href="<%= article.article_url %>"><%= article.article_title %></a>
-                    
-                        <form action="/remove_article" method="post">
-                            <input type="hidden" name="url" value="<%= article.article_url%>">
-                            <button type="submit" id="like">Remove Article</button>
-                        </form>
+<main>
+    <h1 style="text-align: center;">Favorited Articles</h1>
+
+    <div class="container">
+        <div class="row">
+            <% articles.forEach((article) => { %>
+                <div class="col-sm-3">
+                    <div class="card" style="background-color: #fdeaea; height: 25rem; margin-bottom: 2rem;">
+                        <div class="card-body">
+                            <% 
+                                var truncatedTitle = article.article_title.length > 55 ? article.article_title.substring(0, 55) + '...' : article.article_title;
+                            %>
+                            <a class="card-title" style="text-align: center; display: block; font-size: 1rem; text-decoration: underline; color: #333;" href="<%= article.article_url %>">
+                                <%= truncatedTitle %>
+                            </a>
+                            <img src="<%= article.article_img %>" class="card-img-top" alt="error" style="height: 17rem; object-fit: cover;">
+                            <div style="text-align: center; padding: .5rem;">
+                                <form action="/remove_article" method="post">
+                                    <input type="hidden" name="url" value="<%= article.article_url%>">
+                                    <button type="submit" id="like" class = "btn btn-primary" style="background-color: #333; width: 80%; margin: auto;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-x" viewBox="0 0 16 16">
+                                            <path d="M4.5 2A2.5 2.5 0 0 1 7 4.5a.5.5 0 0 0 1 0A2.5 2.5 0 0 1 12.5 2a.5.5 0 0 0 0-1A3.5 3.5 0 0 0 8 4.5a.5.5 0 0 0-1 0A3.5 3.5 0 0 0 3.5 1a.5.5 0 0 0 0 1zM12 16a1.5 1.5 0 0 1-1.061-.439l-8-8a1.5 1.5 0 0 1 2.122-2.122l8 8A1.5 1.5 0 0 1 12 16z"/>
+                                        </svg>
+                                        Remove Article
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <% }); %>
+            <% }); %>
+        </div>
     </div>
-</div>
+</main>
 
 <%- include('../partials/footer.ejs') %>
