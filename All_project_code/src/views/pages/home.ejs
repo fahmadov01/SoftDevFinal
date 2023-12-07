@@ -17,7 +17,7 @@
                 <% results.forEach((events, i) => {%>
                   <% if(events.image){%>
                     <div class="carousel-item <%= i == 0 ? 'active': ''%>">
-                      <img class="carousel-image" src="<%= events.image%>" alt="error loading image">
+                      <img class="carousel-image" src="<%= events.image%>" onerror="if (this.src != 'error.jpg') this.src = '../images/news.jpg';">
                       <div class="carousel-caption">
                         <h5 class="carouselTitle"><a id="carousellink" href="<%= events.url %>"><%= events.title %> </a></h5>
                         <p id="carouseldate"> <%= events.date %></p>

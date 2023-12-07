@@ -137,7 +137,6 @@ const auth = (req, res, next) => {
 app.use(auth);
 
 app.get("/home", (req, res) => {
-  var var2 = "2023-11-30";
   axios({
     url: `http://eventregistry.org/api/v1/article/getArticles`,
     method: 'GET',
@@ -149,13 +148,12 @@ app.get("/home", (req, res) => {
         "lang": "eng",
         "action": "getArticles",
         "articlesPage": 1,
-        "articlesCount": 25,
+        "articlesCount": 5,
 
         "articlesSortBy": "socialScore",
         "articlesSortByAsc": false,
         "articlesArticleBodyLen": -1,
         "resultType": "articles",
-        "dateStart":var2,
         "dataType": [
           "news",
           "pr"
