@@ -22,92 +22,88 @@ describe('Server!', () => {
         done();
       });
   });
-  it('positive : /login', done => {
+    it('Positive: successful register', done => {
+    const username = '9182098234';
+    const password = '1';
     chai
       .request(server)
-      .post('/login')
-      .send({username: 'John Doe', password: 'John'})
+      .post('/register')
+      .send({ username, password })
+      .redirects(0)
       .end((err, res) => {
-        expect(res).to.have.status(200);
-        expect(res.body.message).to.equals('Valid input');
-        done();
-      });
-  });
-  
-  it('Negative : /login. Checking invalid name', done => {
-    chai
-      .request(server)
-      .post('/login')
-      .send({username: 'John Doe', password: 'Joh'})
-      .end((err, res) => {
-        expect(res).to.have.status(200);
-        expect(res.body.message).to.equals('Invalid input');
-        done();
-      });
-  });
-    it('positive : /reg', done => {
-      chai
-        .request(server)
-        .post('/register')
-        .send({username: 'John Doe', password: 'John'})
-        .end((err, res) => {
-          expect(res).to.have.status(200);
-          expect(res.body.message).to.equals('Valid input');
-          done();
-        });
-    });
-    it('negative : /reg', done => {
-      chai
-        .request(server)
-        .post('/register')
-        .send({username: '', password: 'John'})
-        .end((err, res) => {
-          expect(res).to.have.status(200);
-          expect(res.body.message).to.equals('Invalid input');
-          done();
-        });
-    });
+        if (err) {
+          console.error(err);
+          done(err);
+        }
+        expect(res).to.have.status(302);
+        expect(res).to.redirectTo('/'); 
 
+        done();
+      });
+  });
+
+  it('negative: unsuccessful register', done => {
+    const username = '1';
+    const password = '1';
+    chai
+      .request(server)
+      .post('/register')
+      .send({ username, password })
+      .end((err, res) => {
+        if (err) {
+          console.error(err);
+          done(err);
+        }
+        expect(err).to.be.null;
+        expect(res).to.have.status(200);
+        expect(res.text).to.include('Username is already taken');
+        done();
+      });
+  });
   
+  
+  it('Positive: successful login', done => {
+    const username = '1';
+    const password = '1';
+    chai
+      .request(server)
+      .post('/login')
+      .send({ username, password })
+      .redirects(0)
+      .end((err, res) => {
+        if (err) {
+          console.error(err);
+          done(err);
+        }
+        expect(res).to.have.status(302);
+        expect(res).to.redirectTo('/home'); 
+        done();
+      });
+  });
+  it('Negative: unsuccessful register', done => {
+    const username = '1234555555';
+    const password = '1';
+    chai
+      .request(server)
+      .post('/login')
+      .send({ username, password })
+      .redirects(0)
+      .end((err, res) => {
+        if (err) {
+          console.error(err);
+          done(err);
+        }
+        expect(res).to.have.status(302);
+        expect(res).to.redirectTo('/register'); 
+        done();
+      });
+  });
+
+
+
+ 
 
   // ===========================================================================
   // TO-DO: Part A Login unit test case
 });
 
-//We are checking POST /add_user API by passing the user info in the correct order. This test case should pass and return a status 200 along with a "Success" message.
-//Positive cases
-
-
-// // //We are checking POST /add_user API by passing the user info in in incorrect manner (name cannot be an integer). This test case should pass and return a status 200 along with a "Invalid input" message.
-// it('positive : /login', done => {
-//   chai
-//     .request(server)
-//     .post('/login')
-//     .send({username: 'John Doe', password: 'John'})
-//     .end((err, res) => {
-//       expect(res).to.have.status(200);
-//       done();
-//     });
-// });
-
-// it('Negative : /login. Checking invalid name', done => {
-//   chai
-//     .request(server)
-//     .post('/login')
-//     .send({username: 'John Doe', password: 'Joh'})
-//     .end((err, res) => {
-//       expect(res).to.have.status(200);
-//       done();
-//     });
-// });
-//   it('positive : /reg', done => {
-//     chai
-//       .request(server)
-//       .post('/register')
-//       .send({username: 'John Doe', password: 'John'})
-//       .end((err, res) => {
-//         expect(res).to.have.status(200);
-//         expect(res.body.message).to.equals('Invalid input');
-//         done();
-//       });
-//   });
