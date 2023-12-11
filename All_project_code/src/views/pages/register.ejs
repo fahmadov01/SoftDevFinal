@@ -2,27 +2,27 @@
 <div><%- include('../partials/message.ejs') %></div>
 <body id="back"></body>
 <main id="reg_page">
-    <div id="reg_container" class="container">
-        <!-- THE REST OF YOUR HTML CODE GOES HERE -->
-        <h1>Register</h1>
-        <p>Become a member of the NewsNinjas to get all of the latest news</p>
-        <form action="/register" method="POST">
-            <div id="input_box" class="container">
-                <i id="reg_icon" class="bi bi-person-badge"></i>
-                <input type="text" id="username" name="username"/>
-                <label for="username"><b>Username</b></label>
-            </div>
-            <div id="input_box" class="container">
-                <i id="reg_icon" class="bi bi-file-lock2"></i>
-                <input type="text" id="password" name="password"/>
-                <label for="password"><b>Password</b></label>
-            </div>
+        <div id="reg_container" class="container">
+            <!-- THE REST OF YOUR HTML CODE GOES HERE -->
+            <h1>Register</h1>
+            <p>Become a member of the NewsNinjas to get all of the latest news</p>
+            <form action="/register" method="POST">
+                <div id="input_box" class="container">
+                    <i id="reg_icon" class="bi bi-person-badge"></i>
+                    <input type="text" id="username" name="username"/>
+                    <label for="username"><b>Username</b></label>
+                </div>
+                <div id="input_box" class="container">
+                    <i id="reg_icon" class="bi bi-file-lock2"></i>
+                    <input type="text" id="password" name="password"/>
+                    <label for="password"><b>Password</b></label>
+                </div>
             
-            <div id="reg_button">
-                <input type="submit" value="Submit"/>
-            </div>
-        </form>
-    </div>
+                <div id="reg_button">
+                    <input type="submit" value="Submit"/>
+                </div>
+            </form>
+        </div>
 </main>
 
 <%- include ('../partials/footer') %>

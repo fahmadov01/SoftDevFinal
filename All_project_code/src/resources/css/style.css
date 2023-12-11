@@ -1,13 +1,14 @@
 /*Register page styling*/
 #reg_page {
-    margin-left: 525px;
-    margin-top: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    align-items: center;
     width: 400px;
     height: 500px;
     background: transparent;
     border: 3px solid aliceblue;
     backdrop-filter: blur(15px);
-    align-items: center;
     display: flex;
     justify-content: center;
 }
@@ -15,6 +16,7 @@
 #reg_container {
     width: 100%;
     padding: 20px;
+    align-items: center;
 }
 
 #reg_container h1 {
@@ -102,46 +104,26 @@
 .homeLogo > .homePageLogo{
     height: 100px;
     width: 100px;
-    bottom: 10px;
-    margin-left: 30px;
-    margin-top: 10px;
+    /* margin-left: 30px; */
+    /* margin-top: 10px; */
     border: 5px solid black;
 }
 
-.homeLogo > .homePageBusiness
-{
-    margin-left: 400px;
-    text-decoration: none;
-}
-
-.homeLogo > .homePageScience
-{
-    margin-left: 30px;
-    text-decoration: none;
-}
-
-.homeLogo > .homePagePolitics
-{
-    margin-left: 30px;
-    text-decoration: none;
-}
-
-.homeLogo > .homePageSports
-{
-    margin-left: 30px;
-}
 
 .homeHeader{
     font-weight: bold;
     font-size: xx-large;
-    margin-left: 530px;
+    margin-left: auto;
+    margin-right: auto;
     text-decoration: wavy;
     font-style: italic;
     margin-top: 10px;
+    text-align: center;
 }
 
 .carousel-inner > .carousel-item > .carousel-image{
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 10px;
     height: auto;
     max-height: 500px;
@@ -152,14 +134,14 @@
 
 .prevButton > .carousel-control-prev
 {
-    margin-left: 140px;
-    margin-top: 30px;
+    margin-left: 200px;
+    margin-top: auto;
 }
 
 .nextButton > .carousel-control-next
 {
-    margin-right: 140px;
-    margin-top: 40px;
+    margin-right: 200px;
+    margin-top: auto;
 }
 
 #carousellink
