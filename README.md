@@ -20,12 +20,14 @@ Jeremy Varghese, Farid Ahmadov, Christian Ortiz, and Zach Conroy
 Docker 
 
 **5)Instructions on how to run the application locally**
-1. Download all the files 
-2. Start up docker
-3. Open localhost:3000
-4. Register if you don't have an account and then login
-5. Explore the pages
-6. Optional Favorite an article
+1. Download all the files
+2. You might need to delete node_modules folder
+3. Make sure everytime you start you first docker compose down -v
+4. Start up docker
+5. Open localhost:3000
+6. Register if you don't have an account and then login
+7. Explore the pages
+8. Optional Favorite an article
 
 **6)How to run the test cases**
 1. Start docker and run the container and this should run the tests 
