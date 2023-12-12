@@ -35,7 +35,7 @@ Jeremy Varghese, Farid Ahmadov, Christian Ortiz, and Zach Conroy
 3. Docker compose up(all tests should run and pass)
 
 **7)Link to Application**
-http://recitation-011-team-9.eastus.cloudapp.azure.com:3000/login)http://recitation-011-team-9.eastus.cloudapp.azure.com:3000/login
-We will be using local host since we turned this off. It will be run through docker and localhost:3000;
+1. http://recitation-011-team-9.eastus.cloudapp.azure.com:3000/login)http://recitation-011-team-9.eastus.cloudapp.azure.com:3000/login
+2. We will be using local host since we turned this off. It will be run through docker and localhost:3000;
 
 
