@@ -17,7 +17,7 @@ Jeremy Varghese, Farid Ahmadov, Christian Ortiz, and Zach Conroy
 7. Docker
 
 **4)Prerequisites to run the application**
-Docker 
+1. Docker 
 
 **5)Instructions on how to run the application locally**
 1. Download all the files
