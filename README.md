@@ -23,7 +23,7 @@ Docker
 1. Download all the files
 2. You might need to delete node_modules folder
 3. Make sure everytime you start you first docker compose down -v
-4. Start up docker
+4. Docker-compose up
 5. Open localhost:3000
 6. Register if you don't have an account and then login
 7. Explore the pages
