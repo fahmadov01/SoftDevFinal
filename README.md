@@ -30,7 +30,9 @@ Jeremy Varghese, Farid Ahmadov, Christian Ortiz, and Zach Conroy
 8. Optional Favorite an article
 
 **6)How to run the test cases**
-1. Start docker and run the container and this should run the tests 
+1. First start up docker
+2. Docker compose down -v(must do because reg test case is dependant on an empty database)
+3. Docker compose up(all tests should run and pass)
 
 **7)Link to Application**
 ADD THIS
